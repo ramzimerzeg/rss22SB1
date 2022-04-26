@@ -1,4 +1,4 @@
-package model;
+package fr.univrouen.rss22.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;

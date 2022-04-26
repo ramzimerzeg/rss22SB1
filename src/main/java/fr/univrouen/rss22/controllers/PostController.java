@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.Item;
-import model.TestRSS;
+import fr.univrouen.rss22.model.Item;
+import fr.univrouen.rss22.model.TestRSS;
 
 @RestController
 public class PostController {
