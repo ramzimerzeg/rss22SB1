@@ -6,7 +6,7 @@
     <link href="../static/css/styles.css" th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="#" th:action="@{/insert}" th:object="${newItem}" method="post">
+<form action="#" th:action="@{/insert}" th:object="${item}" method="post">
     <div class="form-group">
         <label>GUID : </label>
         <input type="text" id="guid" th:field="*{guid}" />

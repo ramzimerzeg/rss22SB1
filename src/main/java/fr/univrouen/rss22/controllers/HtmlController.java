@@ -34,6 +34,7 @@ public class HtmlController {
 
 	@GetMapping("/insert")
 	public String getInsert(Model model) {
+		model.addAttribute("item", new Item());
 		return "insert";
 	}
 
