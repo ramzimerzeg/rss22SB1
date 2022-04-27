@@ -31,6 +31,12 @@ public class HtmlController {
 
 		return "all-items";
 	}
+
+	@GetMapping("/insert")
+	public String getInsert(Model model) {
+		return "insert";
+	}
+
 	@PostMapping(value = "/insert", produces = MediaType.APPLICATION_XML_VALUE)
 	public String insertItem(@RequestBody Item newItem, Model model) {
 		model.addAttribute("item", newItem);

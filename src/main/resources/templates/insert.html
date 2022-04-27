@@ -6,7 +6,58 @@
     <link href="../static/css/styles.css" th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h1>Insert</h1>
-    <p th:text="${item.guid}" />
+<form action="#" th:action="@{/insert}" th:object="${newItem}" method="post">
+    <div class="form-group">
+        <label>GUID : </label>
+        <input type="text" id="guid" th:field="*{guid}" />
+    </div>
+    <div class="form-group">
+        <label>Titre :</label>
+        <input type="text" th:field="*{title}" />
+    </div>
+    <div class="form-group">
+        <label>Catégorie (Séparées par un espace) :</label>
+        <input type="text" th:field="*{category}" />
+    </div>
+    <div class="form-group">
+        <label>Date de publication :</label>
+        <input type="date" th:field="*{published}"/>
+    </div>
+    <div class="form-group">
+        <label>Image :</label>
+        <input type="file" th:field="*{image}" accept="image/*" />
+    </div>
+    <div class="form-group">
+        <label>Contenu :</label>
+        <div class="radio">
+            <div>
+                <input type="radio" th:field="*{contentType}" value="text"
+                       checked  />
+                <label>Texte</label>
+            </div>
+            <div>
+                <input type="radio" th:field="*{contentType}" value="url" />
+                <label>URL</label>
+            </div>
+        </div>
+        <input type="text" th:field="*{content}" />
+    </div>
+    <div class="form-group">
+        <label>Auteur(s) (Séparés par une virgule (,)) :</label>
+        <input type="text" th:field="*{authors}" />
+    </div>
+
+    <div class="form-group">
+        <label>Email :</label>
+        <input type="email" th:field="*{email}" />
+    </div>
+
+    <div class="form-group">
+        <label>URI : </label>
+        <input type="text" th:field="*{uri}" />
+    </div>
+
+    <button type="submit">Ajouter</button>
+</form>
 </body>
 </html>
