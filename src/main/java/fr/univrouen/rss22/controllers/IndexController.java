@@ -9,25 +9,17 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String getAccueil(Model model) {
-		/*StringBuilder pageweb = new StringBuilder();
-				pageweb.append(
-				 "<html>"
-				+"<head>"
-				+"  <title>Projet : Service REST  &  Client</title>"
-				+"</head>");
-				pageweb.append(
-				 "<body>"
-				+"  <h1>Projet : Service REST  &  Client</h1>"
-				+"  <h3>Version 1.1</h3>"
-				+"  <h4>Merzeg Ramzi</h4>"
-				);*/
-
 		return "accueil";
 	}
 
 	@GetMapping("/help")
 	public String getHelp(Model model) {
 		return "help";
+	}
+
+	@GetMapping(value = "/error")
+	public String getError(Model model) {
+		return "error";
 	}
 
 }

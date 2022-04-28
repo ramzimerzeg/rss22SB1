@@ -51,4 +51,11 @@ public class XmlController {
         return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
     }
 
+    @DeleteMapping(value = "/rss22/delete/{guid}", produces = MediaType.APPLICATION_XML_VALUE)
+    public String deleteItemById(@PathVariable("guid") String guid) {
+        itemRepository.deleteById(guid);
+
+        return "<result><guid>" + guid + "</guid><status>DELETED</status></result>";
+    }
+
 }
