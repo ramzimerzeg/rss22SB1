@@ -4,8 +4,56 @@
         <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
         <title>Article</title>
         <link rel="stylesheet" type="text/css" href="../static/css/styles.css" th:href="@{css/style.css}"/>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: top;
+
+                padding: 50px;
+            }
+
+            label {
+                text-size: 12px;
+            }
+            table   {
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            table  th {
+                border: 1px solid black;
+                padding: 5px;
+            }
+            table  td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+        </style>
     </head>
     <body>
-
+    <div th:if="${item!=null}">
+        <h2>Article </h2>
+        <table>
+            <thead>
+            <tr>
+                <th> Guid </th>
+                <th> Titre </th>
+                <th> Date de publication </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><p th:text="${item.guid}"></p></td>
+                <td><p th:text="${item.title}"></p></td>
+                <td><p th:text="${item.published}"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${item == null}">
+        <h3>guid : <p th:text="${guid}"></p></h3>
+        <h3> status : ERROR </h3>
+    </div>
     </body>
 </html>
