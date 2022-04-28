@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Feed implements Serializable {
 
-    private String title;
-    private String pubDate;
-    private String copyright;
-    private String url;
+    private String title = "Projet XML";
+    private String pubDate = "06-05-2022";
+    private String copyright = "Ramzi Merzeg, Islam Mokrane";
+    private String url = "localhost:8080";
 
     private List<Item> items;
 
