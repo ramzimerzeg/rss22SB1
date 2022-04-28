@@ -5,10 +5,10 @@ import fr.univrouen.rss22.models.XmlEngine;
 import fr.univrouen.rss22.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class XmlController {
@@ -16,13 +16,39 @@ public class XmlController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping(value = "/rss22/resume/xml", produces = MediaType.APPLICATION_XML_VALUE)
-    public String getAllItemsAsXml() {
+    @RequestMapping(value = "/rss22/resume/xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+    public String getItemAsXml() {
         List<Item> items = itemRepository.findAll();
 
-        XmlEngine engine = new XmlEngine(items);
+        return new XmlEngine(items).loadResumeOfDataAsXML();
+    }
 
-        return engine.loadDataAsXML();
+    @PostMapping(value = "/insert", produces = "application/xml")
+    public String insertItem(@ModelAttribute Item newItem) {
+
+        try {
+            itemRepository.save(newItem);
+        } catch (Exception e) {
+            return "<result><status>ERROR</status></result>";
+        }
+
+        return "<result><guid>" + newItem.getGuid() + "</guid><status>INSERTED</status></result>";
+    }
+
+    @GetMapping(value = "/rss22/resume/xml/{guid}", produces = MediaType.APPLICATION_XML_VALUE)
+    public String getItemAsXml(@PathVariable("guid") String guid) {
+        Optional<Item> optionalItem = itemRepository.findById(guid);
+
+        if (optionalItem.isPresent()) {
+            Item item = optionalItem.get();
+
+            XmlEngine engine = new XmlEngine();
+            engine.addItem(item);
+
+            return engine.loadDataAsXML();
+        }
+
+        return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
     }
 
 }

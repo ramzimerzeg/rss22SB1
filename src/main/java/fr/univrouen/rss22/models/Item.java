@@ -1,11 +1,18 @@
 package fr.univrouen.rss22.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@Document(collection = "articles")
+@XmlRootElement(name = "item")
+@XmlAccessorType(XmlAccessType.NONE)
+@Document(collection = "feed")
+@CompoundIndex(unique = true, def = "{'title': 1, 'published': 1}")
 public class Item implements Serializable {
 
 	@Id

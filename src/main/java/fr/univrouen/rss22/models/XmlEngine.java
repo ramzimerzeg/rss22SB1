@@ -1,10 +1,11 @@
 package fr.univrouen.rss22.models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class XmlEngine {
 
-    private List<Item> items;
+    private List<Item> items = new LinkedList<>();
 
     public XmlEngine() {}
 
@@ -20,11 +21,11 @@ public class XmlEngine {
         return this.items;
     }
 
-    public String loadDataAsXML() {
-        StringBuilder xml = new StringBuilder("<articles>");
+    public String loadResumeOfDataAsXML() {
+        StringBuilder xml = new StringBuilder("<feed>");
 
         if (this.items.isEmpty()) {
-            xml.append("</articles>");
+            xml.append("</feed>");
             return xml.toString();
         }
 
@@ -36,9 +37,58 @@ public class XmlEngine {
             xml.append("</item>");
         }
 
-        xml.append("</articles>");
+        xml.append("</feed>");
 
         return xml.toString();
     }
 
+    public String loadDataAsXML() {
+        StringBuilder xml = new StringBuilder("<feed>");
+
+        if (this.items.isEmpty()) {
+            xml.append("</feed>");
+            return xml.toString();
+        }
+
+        for (int i=0; i < this.items.size(); i++) {
+            xml.append("<item>");
+            xml.append("<guid>" + this.items.get(i).getGuid() + "</guid>");
+            xml.append("<title>" + this.items.get(i).getTitle() + "</title>");
+
+            String categories[] = this.items.get(i).getCategory().split(" ");
+            for (String category : categories) {
+                xml.append("<category term=\"" + category + "\"/>");
+            }
+
+            xml.append("<published>" + this.items.get(i).getPublished() + "</published>");
+
+            if (!this.items.get(i).getImage().isEmpty()) {
+                xml.append("<image alt=\"" + this.items.get(i).getImage() + "\"/>");
+            }
+
+            xml.append("<content type=\"" + this.items.get(i).getContentType() + "\">" + this.items.get(i).getContent() + "</content>");
+
+            String authors[] = this.items.get(i).getAuthors().split(",");
+            String emails[] = this.items.get(i).getEmail().split(",");
+            String uris[] = this.items.get(i).getUri().split(",");
+
+            for (int j=0; j < authors.length; j++) {
+                xml.append("<author>");
+                xml.append("<name>" + authors[j] + "</name>");
+                //xml.append("<email>" + emails[j] + "</email>");
+                //xml.append("<uri>" + uris[j] + "</uri>");
+                xml.append("</author>");
+            }
+
+            xml.append("</item>");
+        }
+
+        xml.append("</feed>");
+
+        return xml.toString();
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
 }
