@@ -10,15 +10,15 @@ public class Feed implements Serializable {
     private String title = "Projet XML";
     private String pubDate = "06-05-2022";
     private String copyright = "Ramzi Merzeg, Islam Mokrane";
-    private String url = "localhost:8080";
+    private String link = "localhost:8080";
 
     private List<Item> items;
 
-    public Feed(String title, String pubDate, String copyright, String url) {
+    public Feed(String title, String pubDate, String copyright, String link) {
         this.title = title;
         this.pubDate = pubDate;
         this.copyright = copyright;
-        this.url = url;
+        this.link = link;
 
         this.items = new LinkedList();
     }

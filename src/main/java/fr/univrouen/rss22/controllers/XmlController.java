@@ -1,8 +1,10 @@
 package fr.univrouen.rss22.controllers;
 
+import fr.univrouen.rss22.models.Feed;
 import fr.univrouen.rss22.models.Item;
 import fr.univrouen.rss22.models.XmlEngine;
 import fr.univrouen.rss22.repositories.ItemRepository;
+import fr.univrouen.rss22.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,9 @@ import java.util.Optional;
 
 @RestController
 public class XmlController {
+
+    @Autowired
+    private ItemService itemService;
 
     @Autowired
     private ItemRepository itemRepository;
@@ -25,6 +30,12 @@ public class XmlController {
 
     @PostMapping(value = "/insert", produces = "application/xml")
     public String insertItem(@ModelAttribute Item newItem) {
+
+        Feed rss22 = new Feed("Projet XML","06-05-2022","Ramzi Merzeg, Islam Mokrane","localhost:8080");
+        rss22.addItem(newItem);
+
+        if(!itemService.validate_rss22(rss22))
+            throw new RuntimeException("l'article ne respecte pas le format du xsd");
 
         try {
             itemRepository.save(newItem);
