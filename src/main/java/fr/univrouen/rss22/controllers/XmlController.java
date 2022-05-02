@@ -5,10 +5,17 @@ import fr.univrouen.rss22.models.Item;
 import fr.univrouen.rss22.models.XmlEngine;
 import fr.univrouen.rss22.repositories.ItemRepository;
 import fr.univrouen.rss22.services.ItemService;
+import org.apache.coyote.Response;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +36,37 @@ public class XmlController {
     }
 
     @PostMapping(value = "/insert", produces = "application/xml")
-    public String insertItem(@ModelAttribute Item newItem) {
+    public String insertItem(@ModelAttribute Item newItem, @RequestParam(value = "file",required = false) MultipartFile file ) throws IOException {
 
-        Feed rss22 = new Feed("Projet XML","06-05-2022","Ramzi Merzeg, Islam Mokrane","localhost:8080");
-        rss22.addItem(newItem);
+        Feed rss22 = new Feed();
+        String rss22_;
+        if (file ==null){
+            newItem.setGuid("123");
+            if (newItem.getUpdated()==""){
+                newItem.setUpdated(null);
+            }
+            if (newItem.getImage().getHref()==""){
+                newItem.setImage(null);
+            }
+            if (newItem.getContributor().getName() ==""){
+                newItem.setContributor(null);
+            }
+            rss22.addItem(newItem);
+            rss22_ = itemService.getXMLFrom_rss22(rss22);
 
-        if(!itemService.validate_rss22(rss22))
-            throw new RuntimeException("l'article ne respecte pas le format du xsd");
+        }else{
+            rss22_ = new String(file.getBytes(), StandardCharsets.UTF_8);
+        }
+
+        boolean valid = false;
+
+        try {
+            valid = itemService.validate_rss22(rss22_);
+        } catch(SAXException e) {
+            return "<result><status>"+e.getMessage()+"ERROR</status></result>";
+        } catch (IOException e) {
+            return "<result><status>"+e.getMessage()+"ERROR</status></result>";
+        }
 
         try {
             itemRepository.save(newItem);
@@ -59,7 +90,14 @@ public class XmlController {
             return engine.loadDataAsXML();
         }
 
-        return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
+        JSONObject obj = new JSONObject();
+        JSONObject errorObj = new JSONObject();
+        errorObj.append("guid", guid);
+        errorObj.append("status", "ERROR");
+        obj.append("error", errorObj);
+        return XML.toString(obj);
+
+        //return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
     }
 
     @DeleteMapping(value = "/rss22/delete/{guid}", produces = MediaType.APPLICATION_XML_VALUE)

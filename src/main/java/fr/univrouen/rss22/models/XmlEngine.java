@@ -55,22 +55,22 @@ public class XmlEngine {
             xml.append("<guid>" + this.items.get(i).getGuid() + "</guid>");
             xml.append("<title>" + this.items.get(i).getTitle() + "</title>");
 
-            String categories[] = this.items.get(i).getCategory().split(" ");
+            String categories[] = this.items.get(i).getCategory().getTerm().split(" ");
             for (String category : categories) {
                 xml.append("<category term=\"" + category + "\"/>");
             }
 
             xml.append("<published>" + this.items.get(i).getPublished() + "</published>");
 
-            if (!this.items.get(i).getImage().isEmpty()) {
-                xml.append("<image alt=\"" + this.items.get(i).getImage() + "\"/>");
+            if (!this.items.get(i).getImage().getHref().isEmpty()) {
+                xml.append("<image alt=\"" + this.items.get(i).getImage().getAlt() + "\"/>");
             }
 
-            xml.append("<content type=\"" + this.items.get(i).getContentType() + "\">" + this.items.get(i).getContent() + "</content>");
+            xml.append("<content type=\"" + this.items.get(i).getContent() + "\">" + this.items.get(i).getContent() + "</content>");
 
-            String authors[] = this.items.get(i).getAuthors().split(",");
-            String emails[] = this.items.get(i).getEmail().split(",");
-            String uris[] = this.items.get(i).getUri().split(",");
+            String authors[] = this.items.get(i).getAuthor().getName().split(",");
+            String emails[] = this.items.get(i).getAuthor().getEmail().split(",");
+            String uris[] = this.items.get(i).getAuthor().getUri().split(",");
 
             for (int j=0; j < authors.length; j++) {
                 xml.append("<author>");

@@ -1,135 +1,129 @@
 package fr.univrouen.rss22.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @XmlRootElement(name = "item")
-@XmlAccessorType(XmlAccessType.NONE)
-@Document(collection = "feed")
+@XmlAccessorType(XmlAccessType.FIELD)
+@Document(collection = "rss22")
 @CompoundIndex(unique = true, def = "{'title': 1, 'published': 1}")
 public class Item implements Serializable {
-
 	@Id
+	@XmlElement
 	private String guid;
-
+	@XmlElement
 	private String title;
-	private String category;
+	@XmlElement
+	private Category category;
+	@XmlElement
 	private String published;
-	private String image;
-	private String contentType;
-	private String content;
-	private String authors;
-	private String email;
-	private String uri;
+	@XmlElement
+	private String updated;
+	@XmlElement
+	private Image image;
+	@XmlElement
+	private Content content;
+	@XmlElement
+	private Author author;
+	@XmlElement
+	private Author contributor;
 
-	public Item(String guid, String title, String published) {
+	public Item(String guid, String title,Category category, String published, String updated, Image image, Content content, Author author, Author contributor) {
 		this.guid = guid;
 		this.title = title;
+		this.category = category;
 		this.published = published;
+		this.updated = updated;
+		this.image = image;
+		this.content = content;
+		this.author = author;
+		this.contributor = contributor;
 	}
 
 	public Item() {
 		
 	}
 
-	public Item(String guid, String title, String category, String published, String image, String contentType, String content, String authors, String email, String uri) {
-		this.guid = guid;
-		this.title = title;
-		this.category = category;
-		this.published = published;
-		this.image = image;
-		this.contentType = contentType;
-		this.content = content;
-		this.authors = authors;
-		this.email = email;
-		this.uri = uri;
+	public String getGuid() {
+		return guid;
 	}
 
 	public void setGuid(String guid) {
 		this.guid = guid;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public void setPublished(String published) {
-		this.published = published;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(String authors) {
-		this.authors = authors;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getUri() {
-		return uri;
-	}
-
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
-
-	public String getGuid() {
-		return guid;
-	}
-
-	public String getTitle() {
-		return title;
 	}
 
 	public String getPublished() {
 		return published;
 	}
+
+
+	public void setPublished(String published) { this.published = published; }
+
+	public String getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(String updated) {
+		this.updated = updated;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public Content getContent() {
+		return content;
+	}
+
+	public void setContent(Content content) {
+		this.content = content;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public Author getContributor() {
+		return contributor;
+	}
+
+	public void setContributor(Author contributor) {
+		this.contributor = contributor;
+	}
+
 
 	@Override
 	public String toString() {

@@ -2,16 +2,10 @@
  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
  xmlns="http://univrouen.fr/rss22"
  targetNamespace="http://univrouen.fr/rss22" 
- elementFormDefault="qualified" >
- 
- 
+ elementFormDefault="unqualified" >
+
+
    <xs:element name="feed" type="feedType" />
-
-
-   
-  
-   
- 
 
 
 <xs:complexType name="feedType">
