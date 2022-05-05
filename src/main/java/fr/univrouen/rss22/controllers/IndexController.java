@@ -19,9 +19,4 @@ public class IndexController {
 		return "help";
 	}
 
-	@GetMapping(value = "/error")
-	public String getError(Model model) {
-		return "error";
-	}
-
 }
