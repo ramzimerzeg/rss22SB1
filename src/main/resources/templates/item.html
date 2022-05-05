@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
+        <title>Article</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/styles.css" th:href="@{css/style.css}"/>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: top;
+
+                padding: 50px;
+            }
+
+            label {
+                text-size: 12px;
+            }
+            table   {
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            table  th {
+                border: 1px solid black;
+                padding: 5px;
+            }
+            table  td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+    <div th:if="${item!=null}">
+        <h2>Article </h2>
+        <table>
+            <thead>
+            <tr>
+                <th> Guid </th>
+                <th> Titre </th>
+                <th> Catégorie </th>
+                <th th:if="${item.published!=null}"> Date de publication </th>
+                <th th:if="${item.updated!=null}"> Date de modification </th>
+                <th th:if="${item.image!=null}"> Image </th>
+                <th th:if="${item.content!=null}"> Contenu </th>
+                <th th:if="${item.author!=null}"> Auteur </th>
+                <th th:if="${item.author!=null}"> Email du l'auteur </th>
+                <th th:if="${item.contributor!=null}"> Contributeur </th>
+                <th th:if="${item.contributor!=null}"> Email du contributeur </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><p th:text="${item.guid}"></p></td>
+                <td><p th:text="${item.title}"></p></td>
+                <td><p th:text="${item.category.term}"></p></td>
+                <td th:if="${item.published!=null}" ><p th:text="${item.published}"></p></td>
+                <td th:if="${item.updated!=null}" > <p th:text="${item.updated}"></p></td>
+                <td th:if="${item.image!=null}"><p th:text="${item.image.href}"></p></td>
+                <td th:if="${item.content!=null}" ><p th:text="${item.content.value}"></p></td>
+                <td th:if="${item.author!=null}" ><p th:text="${item.author.name}"></p></td>
+                <td th:if="${item.author!=null}" ><p th:text="${item.author.email}"></p></td>
+                <td th:if="${item.contributor!=null}" ><p th:text="${item.contributor.name}"></p></td>
+                <td th:if="${item.contributor!=null}" ><p th:text="${item.contributor.email}"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${item == null}">
+        <h3>guid : <p th:text="${guid}"></p></h3>
+        <h3> status : ERROR </h3>
+    </div>
+    </body>
+</html>
