@@ -1,0 +1,16 @@
+<rss:feed lang="ar-AR" xmlns:rss="http://univrouen.fr/rss22">
+  <title>string</title>
+  <pubDate>2008-09-29T03:49:45</pubDate>
+  <copyright>string</copyright>
+  <link rel="self" type="string" href="string"/>
+  <item>
+    <guid>anyType</guid>
+    <title>string</title>
+    <category term="string"/>
+    <published>2004-02-14T19:44:14</published>
+    <content type="text" href="string">string</content>
+    <author>
+      <name>string</name>
+    </author>
+  </item>
+</rss:feed>

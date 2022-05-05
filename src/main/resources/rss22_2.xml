@@ -1,0 +1,40 @@
+<rss:feed lang="ar-AR" xmlns:rss="http://univrouen.fr/rss22">
+  <title>string</title>
+  <pubDate>2008-09-29T03:49:45</pubDate>
+  <copyright>string</copyright>
+  <link rel="self" type="string" href="string"/>
+  <item>
+    <guid>anyType</guid>
+    <title>string</title>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <published>2004-02-14T19:44:14</published>
+    <image type="JPEG" href="string" alt="string" length="3"/>
+    <content type="text" href="string">string</content>
+    <author>
+      <name>string</name>
+      <email>string@string.fr</email>
+      <uri>anyType</uri>
+    </author>
+  </item>
+  <item>
+    <guid>anyType</guid>
+    <title>string</title>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <category term="string"/>
+    <published>2004-02-14T19:44:14</published>
+    <image type="JPEG" href="string" alt="string" length="3"/>
+    <content type="text" href="string">string</content>
+    <author>
+      <name>string</name>
+      <email>string@string.fr</email>
+      <uri>anyType</uri>
+    </author>
+  </item>
+</rss:feed>

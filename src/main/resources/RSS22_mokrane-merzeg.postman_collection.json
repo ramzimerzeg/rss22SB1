@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "9a48677d-6202-4b16-ac66-ffbbafc131cc",
+		"name": "RSS22_mokrane-merzeg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}",
+					"host": [
+						"{{server_url_local}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /help",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}help",
+					"host": [
+						"{{server_url_local}}help"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /rss22/resume/xml",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}rss22/resume/xml",
+					"host": [
+						"{{server_url_local}}rss22"
+					],
+					"path": [
+						"resume",
+						"xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /rss22/resume/html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}rss22/resume/html",
+					"host": [
+						"{{server_url_local}}rss22"
+					],
+					"path": [
+						"resume",
+						"html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /rss22/resume/xml/{guid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}rss22/resume/xml/6274040de0ac52441bbc207b",
+					"host": [
+						"{{server_url_local}}rss22"
+					],
+					"path": [
+						"resume",
+						"xml",
+						"6274040de0ac52441bbc207b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /rss22/html/{guid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}rss22/html/6274040de0ac52441bbc207b",
+					"host": [
+						"{{server_url_local}}rss22"
+					],
+					"path": [
+						"html",
+						"6274040de0ac52441bbc207b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /rss22/delete/{guid}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server_url_local}}rss22/delete/627414328fea7f7172a486c7",
+					"host": [
+						"{{server_url_local}}rss22"
+					],
+					"path": [
+						"delete",
+						"627414328fea7f7172a486c7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<item>\r\n    <guid></guid>\r\n    <title>Nombres complexes et leurs univers complexe.</title>\r\n    <category term=\"Mathematiques Physique\"/>\r\n    <published>2022-06-05T10:03:00</published>\r\n    <image type=\"PNG\" href=\"politech.com/fr/nombres-complexes-et-leurs-univers/assets/images/numbres\" alt=\"Complex numbers\"/>\r\n    <content type=\"src\" href=\"\">politech.com/fr/nombres-complexes-et-leurs-univers</content>\r\n    <author>\r\n        <name>Merzeg Ramzi</name>\r\n        <email>ramzi@merzeg.fr</email>\r\n    </author>\r\n</item>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_url_local}}insert",
+					"host": [
+						"{{server_url_local}}insert"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
