@@ -22,7 +22,7 @@ public class Content {
 
 
     public Content(String type, String href, String value) {
-        this.type= "text";
+        this.type= type;
         this.href= href;
         this.value = value;
     }

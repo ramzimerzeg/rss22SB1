@@ -3,47 +3,23 @@
     <head>
         <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
         <title>Accueil</title>
-        <link href="../static/css/styles.css" th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
-        <style>
-            body {
-                display: flex;
-                flex-direction: column;
-                justify-content: start;
-                align-items: center;
-
-                padding: 10% 20%;
-            }
-
-            img {
-                 width: 30vw;
-                 height: auto;
-
-                 margin-bottom: 2.5em;
-            }
-
-            h1, h4, h3 {
-                padding: 0;
-                margin: 0;
-            }
-
-            h4 {
-                margin-bottom: 2.5em;
-            }
-        </style>
-
     </head>
     <body>
-        <img src="../static/images/logo-univrouen.jpg"
-             th:src="@{images/logo-univrouen.jpg}"
-             alt="Logo URN"
-             width="30%" />
-        <h1>Service REST & Client</h1>
-        <h4>Version : 1.2</h4>
+        <div class='accueil-content'>
+            <img src="../static/images/logo-univrouen.jpg"
+                 th:src="@{images/logo-univrouen.jpg}"
+                 alt="Logo Université de Rouen Normandie" />
 
-        <h3>Développeurs : </h3>
-        <ul>
-            <li><h3>Merzeg Ramzi</h3></li>
-            <li><h3>Mokrane Islam</h3></li>
-        </ul>
+            <h1>Service REST & Client</h1>
+            <h4>Version : 1.5</h4>
+
+            <div class='devs'>
+                <h2>Développeurs : </h2>
+                <ul>
+                    <li><h3>Merzeg Ramzi</h3></li>
+                    <li><h3>Mokrane Islam</h3></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>

@@ -3,143 +3,27 @@
     <head>
         <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
         <title>Articles</title>
-        <link rel="stylesheet" type="text/css" href="../static/css/styles.css" th:href="@{css/style.css}"/>
-        <style>
-            body {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: top;
-
-                padding: 50px;
-            }
-
-            label {
-                text-size: 12px;
-            }
-
-            .form-group {
-                display: flex;
-                flex-direction: column;
-                padding: 8px 0px;
-            }
-
-            .radio {
-                display: flex;
-                flex-direction: row;
-            }
-
-            input {
-                width: 400px;
-                padding: 8px;
-                margin: 4px 0px;
-            }
-
-            .radio-input {
-                width: auto;
-                padding: 8px;
-                margin: 8px 8px 8px 0px;
-            }
-
-            .first-radio {
-                margin-right: 20px;
-            }
-
-            button {
-                padding: 10px 30px;
-                margin: 20px 0px
-            }
-            table   {
-               border-collapse: collapse;
-               border: 1px solid black;
-            }
-            table  th {
-               border: 1px solid black;
-               padding: 5px;
-            }
-            table  td {
-               border: 1px solid black;
-               padding: 5px;
-            }
-        </style>
     </head>
     <body>
-        <div>
-            <h2>Liste des articles : </h2>
-            <table>
-                <thead>
+        <h2>Articles</h2>
+        <table>
+            <thead>
                 <tr>
                     <th> Guid </th>
                     <th> Titre </th>
                     <th> Date de publication </th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr th:if="${items.empty}">
-                    <td> Aucun article n'est disponible. </td>
+                    <p> Aucun article n'est disponible. </p>
                 </tr>
                 <tr th:each="item : ${items}">
                     <td><p th:text="${item.guid}"></p></td>
                     <td><p th:text="${item.title}"></p></td>
                     <td><p th:text="${item.published}"></p></td>
                 </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h2>Ajouter un article : </h2>
-            <form action="#" th:action="@{/insert}" th:object="${item}" method="post">
-                <div class="form-group">
-                    <label>Titre :</label>
-                    <input type="text" th:field="*{title}" />
-                </div>
-                <div class="form-group">
-                    <label>Catégorie (Séparées par un espace) :</label>
-                    <input type="text" th:field="*{category.term}" />
-                </div>
-                <div class="form-group">
-                    <label>Date de publication :</label>
-                    <input type="datetime-local" th:field="*{published}"/>
-                </div>
-                <div class="form-group">
-                    <label>Date de mise a jour :</label>
-                    <input type="datetime-local" th:default="null" th:field="*{updated}"/>
-                </div>
-                <div class="form-group">
-                    <label>Image :</label>
-                    <input type="file" th:field="*{image.href}" accept="image/*" />
-                </div>
-                <div class="form-group">
-                    <label>Contenu :</label>
-                    <div class="radio">
-                        <div class="first-radio">
-                            <input class="radio-input" type="radio" name="contentType" th:field="*{content.type}" th:value="text"
-                                   checked="checked" />
-                            <label>Texte</label>
-                        </div>
-                        <div>
-                            <input class="radio-input" type="radio" name="contentType" th:field="*{content.href}" th:value="url" />
-                            <label>URL</label>
-                        </div>
-                    </div>
-                    <input type="text" th:field="*{content.value}" />
-                </div>
-                <div class="form-group">
-                    <label>Auteur(s) :</label>
-                    <input type="text" th:field="*{author.name}" />
-                    <label>Email :</label>
-                    <input type="email" th:field="*{author.email}" />
-                </div>
-
-                <div class="form-group">
-                    <label>Contributeur:</label>
-                    <input type="text" th:field="*{contributor.name}" />
-                    <label>Email :</label>
-                    <input type="email" th:field="*{contributor.email}" />
-                </div>
-
-                <button type="submit">Ajouter</button>
-            </form>
-        </div>
+            </tbody>
+        </table>
     </body>
 </html>

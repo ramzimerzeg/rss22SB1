@@ -9,7 +9,9 @@ import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -77,6 +79,23 @@ public class ItemService {
         {
             return false;
         }*/
+    }
+
+    public Item getFeedObjectFromXMLString(String xmlString) {
+        Item item = null;
+        JAXBContext jaxbContext;
+        try {
+            jaxbContext = JAXBContext.newInstance(Item.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            item = (Item) jaxbUnmarshaller.unmarshal(new StringReader(xmlString));
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return item;
     }
 
     public String getXMLFrom_rss22(Feed rss22) {

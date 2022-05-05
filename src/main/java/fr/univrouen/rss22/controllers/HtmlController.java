@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class HtmlController {
@@ -27,20 +28,23 @@ public class HtmlController {
 	}
 
 	@GetMapping("/rss22/html/{guid}")
-	public String getItemAsHtml(@PathVariable("guid") String guid , Model model) {
+	public String getItemAsHtml(
+			@PathVariable("guid") String guid ,
+			Model model)
+	{
 		Optional<Item> optionalItem = itemRepository.findById(guid);
 
 		if (optionalItem.isPresent()) {
 			Item item = optionalItem.get();
 			model.addAttribute("item", item);
-			return "item";
 		}
 
 		else {
 			model.addAttribute("item", null);
 			model.addAttribute("guid", guid);
-			return "item";
 		}
+
+		return "item";
 	}
 
 }

@@ -91,4 +91,44 @@ public class XmlEngine {
     public void addItem(Item item) {
         items.add(item);
     }
+
+    public String getItemAsXml(Item item) {
+        StringBuilder xml = new StringBuilder("");
+
+        xml.append("<item>");
+        xml.append("<guid>" + item.getGuid() + "</guid>");
+        xml.append("<title>" + item.getTitle() + "</title>");
+        xml.append("<category term=\"" + item.getCategory().getTerm() + "\"/>");
+
+        xml.append("<published>" + item.getPublished() + "</published>");
+
+        if (item.getImage() != null) {
+            xml.append("<image type=\"" + item.getImage().getType() + "\" href=\"" + item.getImage().getHref() + "\" alt=\"" + item.getImage().getAlt() + "\"/>");
+        }
+
+        xml.append("<content type=\"" + item.getContent().getType() + "\">" + item.getContent().getValue() + "</content>");
+
+        xml.append("<author>");
+        xml.append("<name>" + item.getAuthor().getName() + "</name>");
+        xml.append("<email>" + item.getAuthor().getEmail() + "</email>");
+        xml.append("</author>");
+
+        xml.append("</item>");
+
+        return xml.toString();
+    }
+
+    public String getRss22(String flux) {
+        StringBuilder xml = new StringBuilder("");
+        xml.append("<rss:feed lang=\"ar-AR\" xmlns:rss=\"http://univrouen.fr/rss22\">\n" +
+                "  <title>string</title>\n" +
+                "  <pubDate>2008-09-29T03:49:45</pubDate>\n" +
+                "  <copyright>string</copyright>\n" +
+                "  <!--1 or more repetitions:-->\n" +
+                "  <link rel=\"self\" type=\"string\" href=\"string\"/>");
+        xml.append(flux);
+        xml.append("</rss:feed>");
+
+        return xml.toString();
+    }
 }
