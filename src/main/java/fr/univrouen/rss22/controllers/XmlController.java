@@ -31,7 +31,7 @@ public class XmlController {
         return new XmlEngine(items).loadResumeOfDataAsXML();
     }
 
-    @GetMapping(value = "/rss22/resume/xml/{guid}")
+    @GetMapping(value = "/rss22/resume/xml/{guid}",produces = MediaType.APPLICATION_XML_VALUE)
     public String getItemAsXml(@PathVariable("guid") String guid) {
         Optional<Item> optionalItem = itemRepository.findById(guid);
 
@@ -44,7 +44,7 @@ public class XmlController {
         return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
     }
 
-    @PostMapping(value = "/insert", produces = "application/xml")
+    @PostMapping(value = "/insert", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     public String insertItem(@RequestBody String flux, @RequestParam(value = "file",required = false) MultipartFile file ) throws IOException {
 
         Item item;
