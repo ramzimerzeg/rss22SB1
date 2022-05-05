@@ -1,5 +1,7 @@
 package fr.univrouen.rss22.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.univrouen.rss22.models.Item;
 import fr.univrouen.rss22.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +28,16 @@ public class HtmlController {
 		model.addAttribute("item", new Item());
 
 		return "all-items";
+	}
+
+	@RequestMapping(value = { "/rss22/resume/react/html" }, method = RequestMethod.GET)
+	@ResponseBody
+	public String getArticleResumeIHM() throws JsonProcessingException {
+		List<Item> itemList = itemRepository.findAll();
+
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(itemList);
+		return json;
 	}
 
 	@GetMapping("/rss22/html/{guid}")

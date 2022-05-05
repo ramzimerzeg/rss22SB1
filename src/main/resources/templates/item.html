@@ -39,15 +39,28 @@
             <tr>
                 <th> Guid </th>
                 <th> Titre </th>
+                <th> Catégorie </th>
                 <th> Date de publication </th>
+                <th> Date de modification </th>
+                <th> Image </th>
+                <th> Contenu </th>
+                <th> Auteur </th>
+                <th> Email du l'auteur </th>
+
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td><p th:text="${item.guid}"></p></td>
                 <td><p th:text="${item.title}"></p></td>
+                <td><p th:text="${item.category}"></p></td>
                 <td><p th:text="${item.published}"></p></td>
-                <td><p th:text="${item.published}"></p></td>
+                <td><p th:text="${item.updated}"></p></td>
+                <td><p th:text="${item.image}"></p></td>
+                <td><p th:text="${item.content}"></p></td>
+                <td><p th:text="${item.author.name}"></p></td>
+                <td><p th:text="${item.author.email}"></p></td>
+
             </tr>
             </tbody>
         </table>
