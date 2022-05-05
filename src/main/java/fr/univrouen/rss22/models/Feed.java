@@ -47,9 +47,6 @@ public class Feed {
         this.lang = "en-007";
     }
 
-
-
-
     public String getTitle() {
         return title;
     }

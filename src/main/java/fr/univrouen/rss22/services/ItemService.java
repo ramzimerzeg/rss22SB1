@@ -81,7 +81,7 @@ public class ItemService {
         }*/
     }
 
-    public Item getFeedObjectFromXMLString(String xmlString) {
+    public Item getItemObjectFromXMLString(String xmlString) {
         Item item = null;
         JAXBContext jaxbContext;
         try {
@@ -96,6 +96,23 @@ public class ItemService {
         }
 
         return item;
+    }
+
+    public Feed getFeedObjectFromXMLString(String xmlString) {
+        Feed feed = null;
+        JAXBContext jaxbContext;
+        try {
+            jaxbContext = JAXBContext.newInstance(Feed.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            feed = (Feed) jaxbUnmarshaller.unmarshal(new StringReader(xmlString));
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return feed;
     }
 
     public String getXMLFrom_rss22(Feed rss22) {

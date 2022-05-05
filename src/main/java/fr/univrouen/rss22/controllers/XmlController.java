@@ -44,7 +44,7 @@ public class XmlController {
         return "<result><guid>" + guid + "</guid><status>ERROR</status></result>";
     }
 
-    @PostMapping(value = "/insert", consumes = "application/xml", produces = "application/xml")
+    @PostMapping(value = "/insert", produces = "application/xml")
     public String insertItem(@RequestBody String flux, @RequestParam(value = "file",required = false) MultipartFile file ) throws IOException {
 
         Item item;
@@ -68,10 +68,15 @@ public class XmlController {
 
         if (valid) {
             try {
-                item = itemService.getFeedObjectFromXMLString(flux);
+                if (file == null) {
+                    item = itemService.getItemObjectFromXMLString(flux);
+                } else {
+                    item = itemService.getFeedObjectFromXMLString(rss22).getItems().get(0);
+                }
                 item.setGuid(null);
                 itemRepository.save(item);
             } catch (Exception e) {
+                System.out.println("IO Exception Ajout");
                 return "<result><status>" + e.getMessage() + "</status></result>";
             }
         } else {

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.univrouen.rss22.models.Item;
 import fr.univrouen.rss22.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +31,14 @@ public class HtmlController {
 		return "all-items";
 	}
 
-	@RequestMapping(value = { "/rss22/resume/react/html" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/rss22/resume/json" }, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String getArticleResumeIHM() throws JsonProcessingException {
 		List<Item> itemList = itemRepository.findAll();
 
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(itemList);
+
 		return json;
 	}
 
