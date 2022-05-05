@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
+        <title>Page d'aide</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/styles.css" th:href="@{css/style.css}"/>
+        <style>
+            body {
+
+                justify-content: space-around;
+                align-items: top;
+
+                padding: 50px;
+            }
+            table   {
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            table  th {
+                border: 1px solid black;
+                padding: 5px;
+            }
+            table  td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Page Help</h1>
+        <table>
+            <thead>
+            <th>URL</th>
+            <th>Méthode</th>
+            <th>Format attendu</th>
+            <th>Format de retour</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>/</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>HTML</td>
+            </tr>
+            <tr>
+                <td>/help</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>HTML</td>
+            </tr>
+            <tr>
+                <td>/rss22/resume/xml</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>Flux XML</td>
+            </tr>
+            <tr>
+                <td>/rss22/resume/html</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>Flux HTML</td>
+            </tr>
+            <tr>
+                <td>/rss22/resume/xml/{guid}</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>Flux XML</td>
+            </tr>
+            <tr>
+                <td>/rss22/html/{guid}</td>
+                <td>GET</td>
+                <td> / </td>
+                <td>Flux HTML</td>
+            </tr>
+            <tr>
+                <td>/insert</td>
+                <td>POST</td>
+                <td> Flux XML </td>
+                <td>Flux XML</td>
+            </tr>
+            <tr>
+                <td>/rss22/delete/{guid}</td>
+                <td>DELETE</td>
+                <td> / </td>
+                <td>Flux XML</td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

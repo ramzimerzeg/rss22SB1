@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" content="text/html" http-equiv="Content-Type"/>
+        <title>Articles</title>
+    </head>
+    <body>
+        <h2>Articles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th> Guid </th>
+                    <th> Titre </th>
+                    <th> Date de publication </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${items.empty}">
+                    <p> Aucun article n'est disponible. </p>
+                </tr>
+                <tr th:each="item : ${items}">
+                    <td><p th:text="${item.guid}"></p></td>
+                    <td><p th:text="${item.title}"></p></td>
+                    <td><p th:text="${item.published}"></p></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
